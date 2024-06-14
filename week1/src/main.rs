@@ -32,6 +32,6 @@ fn main() {
     let nums = [10, 5, 6, 3, 2, 20, 100, 80];
     let mut wave_sorted = nums;
     wave_sort(&mut wave_sorted);
-    
+
     println!("wave sort before: {:?}, after: {:?}", nums, wave_sorted);
 }
