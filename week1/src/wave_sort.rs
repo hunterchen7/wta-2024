@@ -2,7 +2,7 @@
 /// This is done in-place. The time complexity is O(n), where n is the length of the list.
 ///
 /// This is one of many possible answers, as there may be multiple possible wave arrays.
-/// e.g. [2, 2, 2, 3, 3, 3] is a valid wave array, as is [3, 2, 3, 2, 3, 2].
+/// e.g. [2, 2, 2, 3, 3, 3] is a valid wave array, as is [3, 2, 3, 2, 3, 2], etc.
 ///
 /// # Arguments
 ///
@@ -23,6 +23,18 @@
 /// wave_sort(&mut nums);
 /// assert_eq!(nums, [2, 2, 2, 3, 3, 3]);
 /// ```
+///
+/// # Approach
+///
+/// We iterate over the list, swapping elements if they are not in the correct order, i.e. if the
+/// index is even, the element should be greater than the next element, and if the index is odd,
+/// the element should be less than the next element.
+///
+/// # Time and Space Complexity
+///
+/// The time complexity is O(n), where n is the length of the list, since we iterate over the list
+/// exactly once. The space complexity is O(1) since we "sort" the list in-place. And don't
+/// allocate any additional memory.
 pub fn wave_sort(nums: &mut [i32]) -> &mut [i32] {
     if nums.is_empty() {
         return nums;

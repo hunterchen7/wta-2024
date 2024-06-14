@@ -37,6 +37,29 @@ use std::collections::LinkedList;
 ///     .iter()
 ///     .for_each(|&x| assert_eq!(Some(&x), iter2.next()));
 /// ```
+///
+/// # Approach
+///
+/// We create three new linked lists to store the 0s, 1s, and 2s. We then iterate over the
+/// original linked list and push the values to the respective lists. Then we append the
+/// 1s to the 0s and the 2s to the 1s. We then append the 0s to the original linked list.
+///
+/// # Time and Space Complexity
+///
+/// The time complexity is O(n), where n is the length of the linked list, since we iterate
+/// over the linked list exactly once. The space complexity is also O(n) since we create
+/// three new linked lists to store the 0s, 1s, and 2s.
+///
+/// However, we can reduce the space complexity to O(1) by shifting the links in place.
+///
+/// There is also an alternate approach of counting the number of 0s, 1s, and 2s in the linked
+/// list and then setting the values accordingly. This would also have a time complexity of O(n)
+/// and a space complexity of O(1) but supposing that the linked lists store more information, this
+/// approach would be incorrect. And it's also kind of cheating.
+///
+/// # Panics
+///
+/// Panics if there is an invalid value in the linked list, i.e. not 0, 1, or 2.
 pub fn segregate(head: &mut LinkedList<u8>) {
     let mut zero = LinkedList::new();
     let mut one = LinkedList::new();

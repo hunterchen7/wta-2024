@@ -1,11 +1,4 @@
 /// Constructs a spiral represented as a Vec<i32> from a 2D matrix of i32
-/// Does not do so in-place, as a choice, because I don't like printing things inside functions.
-/// As such, O(n) space rather than O(1).
-///
-/// It works by switching directions when the current direction has been exhausted, and then
-/// shrinking the borders of the matrix as the spiral progresses. To print in-place instead of
-/// creating a new vec, print the elements that are being used to extend the spiral rather than
-/// adding them.
 ///
 /// # Arguments
 ///
@@ -30,6 +23,21 @@
 ///     vec![1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
 /// );
 /// ```
+///
+/// # Approach
+///
+/// We keep track of the top, bottom, left, and right borders of the matrix, and the direction we
+/// are currently moving in. We then extend the spiral in that direction, and change direction when
+/// we reach the border of the matrix, making sure the borders shrink as we go along. We continue
+/// until either the top and bottom borders, or left and right borders converge.
+///
+/// # Time and Space Complexity
+///
+/// The time complexity is O(n), where n is the number of elements in the matrix since each element
+/// is visited exactly once. The space complexity is also O(n) since the result vector is the same
+/// size as the matrix. It could be done in O(1) relatively trivially, where instead of extending
+/// the result vector, we print the elements directly. But I don't like printing inside of
+/// functions, so I'm not going to do that.
 pub fn spiral(matrix: &[Vec<i32>]) -> Vec<i32> {
     if matrix.is_empty() {
         return Vec::new();
