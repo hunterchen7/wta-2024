@@ -1,12 +1,13 @@
-/// Constructs a spiral represented as a Vec<i32> from a 2D matrix of i32
+/// Constructs a spiral represented as a Vec<T> from a 2D matrix of T, where T is a PartialOrd and
+/// Copy type, such as an integer like u32 or i32.
 ///
 /// # Arguments
 ///
-/// * `matrix` - A 2D matrix of i32
+/// * `matrix` - A 2D matrix of T
 ///
 /// # Returns
 ///
-/// A Vec<i32> representing the spiral of the matrix, i.e. the order it was traversed
+/// A Vec<T> representing the spiral of the matrix, i.e. the order it was traversed
 ///
 /// # Example
 ///
@@ -38,7 +39,8 @@
 /// size as the matrix. It could be done in O(1) relatively trivially, where instead of extending
 /// the result vector, we print the elements directly. But I don't like printing inside of
 /// functions, so I'm not going to do that.
-pub fn spiral(matrix: &[Vec<i32>]) -> Vec<i32> {
+// pub fn wave_sort<T: PartialOrd + Copy>(nums: &mut [T]) -> &mut [T]
+pub fn spiral<T: PartialOrd + Copy>(matrix: &[Vec<T>]) -> Vec<T> {
     if matrix.is_empty() {
         return Vec::new();
     }
@@ -158,12 +160,27 @@ mod tests {
 
     #[test]
     fn test_spiral_empty() {
-        assert_eq!(spiral(&[]), vec![]);
+        let empty_matrix: Vec<Vec<i32>> = Vec::new();
+        assert_eq!(spiral(&empty_matrix), vec![]);
     }
 
     #[test]
     fn test_spiral_single() {
         assert_eq!(spiral(&[vec![1]]), vec![1]);
+    }
+
+    #[test]
+    fn test_spiral_float() {
+        let matrix = vec![
+            vec![1.0, 2.0, 3.0],
+            vec![4.0, 5.0, 6.0],
+            vec![7.0, 8.0, 9.0],
+        ];
+
+        assert_eq!(
+            spiral(&matrix),
+            vec![1.0, 2.0, 3.0, 6.0, 9.0, 8.0, 7.0, 4.0, 5.0]
+        );
     }
 
     #[test]

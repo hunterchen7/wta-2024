@@ -6,7 +6,7 @@
 ///
 /// # Arguments
 ///
-/// * `nums` - A mutable slice of i32, the list to be sorted
+/// * `nums` - A mutable slice of numbers, the list to be "sorted"
 ///
 /// # Returns
 ///
