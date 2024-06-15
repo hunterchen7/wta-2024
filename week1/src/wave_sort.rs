@@ -32,9 +32,8 @@
 ///
 /// # Time and Space Complexity
 ///
-/// The time complexity is O(n), where n is the length of the list, since we iterate over the list
-/// exactly once. The space complexity is O(1) since we "sort" the list in-place. And don't
-/// allocate any additional memory.
+/// The time complexity is O(n), since we iterate over the list exactly once. The space complexity 
+/// is O(1) since we "sort" the list in-place and don't allocate any additional memory.
 pub fn wave_sort<T: PartialOrd + Copy>(nums: &mut [T]) -> &mut [T] {
     if nums.is_empty() {
         return nums;
