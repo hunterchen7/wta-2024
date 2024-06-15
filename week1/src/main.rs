@@ -3,9 +3,10 @@ mod segregate;
 mod spiral;
 mod wave_sort;
 
+use employee_count::employee_count;
 use segregate::segregate;
 use spiral::{create_matrix, spiral};
-use std::collections::LinkedList;
+use std::collections::{HashMap, LinkedList};
 use std::time::Instant;
 use wave_sort::wave_sort;
 
@@ -20,7 +21,7 @@ fn main() {
     spiral1.iter().for_each(|x| print!("{} ", x));
     println!();
 
-    let giga_matrix = create_matrix(10000);
+    let giga_matrix = create_matrix(1000);
 
     let start = Instant::now();
     let giga_spiral = spiral(&giga_matrix);
@@ -36,9 +37,36 @@ fn main() {
 
     println!(
         "2. Wave sort:
-        before: {:?},
-         after: {:?}\n",
+    before: {:?},
+     after: {:?}\n",
         nums, wave_sorted
+    );
+
+    let mut dict = HashMap::new();
+    dict.insert("A", "C");
+    dict.insert("B", "C");
+    dict.insert("C", "F");
+    dict.insert("D", "E");
+    dict.insert("E", "F");
+    dict.insert("F", "F");
+
+    let result = employee_count(&dict);
+
+    println!("3. Employee count:");
+    result.iter().for_each(|(k, v)| {
+        println!("  {}: {}", k, v);
+    });
+
+    let list = [1, 2, 2, 1, 2, 0, 2, 2];
+    let mut linked_list = LinkedList::new();
+    list.iter().for_each(|&x| linked_list.push_back(x));
+
+    segregate(&mut linked_list);
+
+    println!(
+        "4. Segregate: {:?} -> {:?}\n",
+        list,
+        linked_list.iter().collect::<Vec<_>>()
     );
 
     let list = [1, 2, 2, 1, 2, 0, 2, 2];
@@ -48,7 +76,7 @@ fn main() {
     segregate(&mut linked_list);
 
     println!(
-        "3. Segregate: {:?} -> {:?}",
+        "4. Segregate: {:?} -> {:?}\n",
         list,
         linked_list.iter().collect::<Vec<_>>()
     );
