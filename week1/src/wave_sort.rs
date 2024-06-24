@@ -102,6 +102,13 @@ mod test {
         wave_sort(&mut nums);
         check_valid_wave(&nums);
     }
+    
+    #[test]
+    fn test_wave_sort_reverse() {
+        let mut nums = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+        wave_sort(&mut nums);
+        check_valid_wave(&nums);
+    }
 
     #[test]
     fn test_wave_sort_sorted() {

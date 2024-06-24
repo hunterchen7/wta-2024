@@ -39,7 +39,6 @@
 /// size as the matrix. It could be done in O(1) relatively trivially, where instead of extending
 /// the result vector, we print the elements directly. But I don't like printing inside of
 /// functions, so I'm not going to do that.
-// pub fn wave_sort<T: PartialOrd + Copy>(nums: &mut [T]) -> &mut [T]
 pub fn spiral<T: PartialOrd + Copy>(matrix: &[Vec<T>]) -> Vec<T> {
     if matrix.is_empty() {
         return Vec::new();
